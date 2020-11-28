@@ -1023,12 +1023,13 @@ check:
 end
 
 fun list-max(lon :: List&lt;Number&gt;) -&gt; Number:
-  fold(lam(acc, n): if n &gt; acc: n else: acc end end, 0, lon)
+  fold(lam(acc, n): if ((acc == "start") or (n &gt; acc)): n else: acc end end, "start", lon)
 end
 check:
   list-max([list: -1, 1, 2]) is 2
   list-max([list: 0, -100, 1]) is 1
   list-max([list: 1/2, 3/4]) is 3/4
+  list-max([list: -1, -2, -3]) is -1
 end
 </pre>
 </details>
